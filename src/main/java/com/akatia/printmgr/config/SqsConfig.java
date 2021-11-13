@@ -22,9 +22,6 @@ public class SqsConfig {
     @Value("${aws.secret-key}")
     private String secretKey;
 
-    @Value("${aws.queue.name}")
-    private String queueName;
-
     @Bean
     public QueueMessagingTemplate queueMessagingTemplate() {
         return new QueueMessagingTemplate(amazonSQSAsync());

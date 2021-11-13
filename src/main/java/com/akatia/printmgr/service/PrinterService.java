@@ -45,17 +45,10 @@ public class PrinterService {
 
             printerJob.setPrintService(findPrintService(printerNameToUse));
             printerJob.setPageable(new PDFPageable(pdf));
-            //printerJob.setCopies();
 
             PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
-            //printRequestAttributeSet.add(MediaSizeName.ISO_A4);
-            //printRequestAttributeSet.add(new PrinterResolution(300, 300, PrinterResolution.DPI));
-            //printRequestAttributeSet.add(new MediaPrintableArea(2, 2, 210 - 4, 297 - 4, MediaPrintableArea.MM));
-            //printRequestAttributeSet.add(MediaTray.TOP);
             printRequestAttributeSet.add(Sides.ONE_SIDED);
-            //printRequestAttributeSet.add(new PageRanges(1, 1));
 
-            //printerJob.print();
             printerJob.print(printRequestAttributeSet);
         }
         catch (PrinterException pe) {
@@ -98,7 +91,6 @@ public class PrinterService {
             Object o = printService.getSupportedAttributeValues(Media.class, flavor, null);
             if (o != null && o.getClass().isArray()) {
                 for (Media media : (Media[]) o) {
-                    //log.info(media.getClass().getName());
 
                     // we collect the MediaTray available
                     if (media instanceof MediaTray) {
