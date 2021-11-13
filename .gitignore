@@ -38,3 +38,4 @@ mvnw.cmd
 
 DEVNOTES.md
 printmgr.properties
+*.log
