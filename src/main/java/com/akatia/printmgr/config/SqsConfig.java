@@ -9,8 +9,10 @@ import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
+@Profile("!test")
 public class SqsConfig {
 
     @Value("${aws.region}")
@@ -28,7 +30,6 @@ public class SqsConfig {
     }
 
     @Bean
-    @Primary
     public AmazonSQSAsync amazonSQSAsync() {
         return AmazonSQSAsyncClientBuilder.standard()
                 .withRegion(region)
