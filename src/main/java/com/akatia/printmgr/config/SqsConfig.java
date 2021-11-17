@@ -30,6 +30,7 @@ public class SqsConfig {
     }
 
     @Bean
+    @Primary
     public AmazonSQSAsync amazonSQSAsync() {
         return AmazonSQSAsyncClientBuilder.standard()
                 .withRegion(region)
