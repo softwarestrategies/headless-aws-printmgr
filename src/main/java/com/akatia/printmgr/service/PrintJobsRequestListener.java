@@ -32,30 +32,44 @@ public class PrintJobsRequestListener {
             printJobsRequest = objectMapper.readValue(messageAsJson, PrintJobsRequest.class);
 
             for (PrintJobRequest printJobRequest : printJobsRequest.getPrintJobs()) {
+                try {
+                    descriptionOfCurrentPrintJobRequest = printJobRequest.getDescription();
 
-                descriptionOfCurrentPrintJobRequest = printJobRequest.getDescription();
+                    if (StringUtils.isNullOrEmpty(printJobRequest.getDescription())) {
+                        throw new Exception("Missing message field [description]");
+                    }
+                    else if (StringUtils.isNullOrEmpty(printJobRequest.getFileUrl())) {
+                        throw new Exception("Missing message field [fileUrl]");
+                    }
 
-                if (StringUtils.isNullOrEmpty(printJobRequest.getDescription())) {
-                    throw new Exception("Missing message field [description]");
+                    printerService.printDocument(printJobRequest);
+
+                    log.info("Print Job Succeeded: {}", descriptionOfCurrentPrintJobRequest);
                 }
-                else if (StringUtils.isNullOrEmpty(printJobRequest.getFileUrl())) {
-                    throw new Exception("Missing message field [fileUrl]");
+                catch (Exception e) {
+                    if (StringUtils.isNullOrEmpty(descriptionOfCurrentPrintJobRequest)) {
+                        log.error("Print Job Failed: {}", e.getMessage());
+                        log.debug("Exception: ", e);
+                    }
+                    else {
+                        log.error("Print Job Failed: {} -- {}", descriptionOfCurrentPrintJobRequest, e.getMessage());
+                        log.debug("Exception: ", e);
+                    }
                 }
-
-                printerService.printDocument(printJobRequest);
-
-                log.info("Print Job Succeeded: {}", descriptionOfCurrentPrintJobRequest);
             }
         }
         catch (JsonProcessingException jsonException) {
             log.error("Print Job Failed: {}", jsonException.getOriginalMessage());
+            log.debug("Exception: ", jsonException);
         }
         catch (Exception e) {
             if (StringUtils.isNullOrEmpty(descriptionOfCurrentPrintJobRequest)) {
                 log.error("Print Job Failed: {}", e.getMessage());
+                log.debug("Exception: ", e);
             }
             else {
                 log.error("Print Job Failed: {} -- {}", descriptionOfCurrentPrintJobRequest, e.getMessage());
+                log.debug("Exception: ", e);
             }
         }
     }

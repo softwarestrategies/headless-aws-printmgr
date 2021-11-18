@@ -52,11 +52,9 @@ public class PrinterService {
             printerJob.print(printRequestAttributeSet);
         }
         catch (PrinterException pe) {
-            log.error("PrinterException", pe);
             throw new RuntimeException("PrinterException", pe);
         }
         catch (IOException ioe) {
-            log.error("Unable to process file", ioe);
             throw new RuntimeException("Unable to process file", ioe);
         }
     }
