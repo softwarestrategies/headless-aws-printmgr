@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.aws.messaging.listener.SqsMessageDeletionPolicy;
 import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,11 +15,11 @@ import org.springframework.stereotype.Component;
 public class PrintJobsRequestListener {
 
     private final ObjectMapper objectMapper;
-    private final PrinterService printerService;
+    private final PrintService printService;
 
-    public PrintJobsRequestListener(ObjectMapper objectMapper, PrinterService printerService) {
+    public PrintJobsRequestListener(ObjectMapper objectMapper, PrintService printService) {
         this.objectMapper = objectMapper;
-        this.printerService = printerService;
+        this.printService = printService;
     }
 
     @SqsListener(value = "${aws.queue.name}",deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
@@ -42,9 +41,7 @@ public class PrintJobsRequestListener {
                         throw new Exception("Missing message field [fileUrl]");
                     }
 
-                    printerService.printDocument(printJobRequest);
-
-                    log.info("Print Job Succeeded: {}", descriptionOfCurrentPrintJobRequest);
+                    printService.printDocument(printJobRequest);
                 }
                 catch (Exception e) {
                     if (StringUtils.isNullOrEmpty(descriptionOfCurrentPrintJobRequest)) {
@@ -63,14 +60,8 @@ public class PrintJobsRequestListener {
             log.debug("Exception: ", jsonException);
         }
         catch (Exception e) {
-            if (StringUtils.isNullOrEmpty(descriptionOfCurrentPrintJobRequest)) {
-                log.error("Print Job Failed: {}", e.getMessage());
-                log.debug("Exception: ", e);
-            }
-            else {
-                log.error("Print Job Failed: {} -- {}", descriptionOfCurrentPrintJobRequest, e.getMessage());
-                log.debug("Exception: ", e);
-            }
+            log.error("Print Job Failed: {}", e.getMessage());
+            log.debug("Exception: ", e);
         }
     }
 }
