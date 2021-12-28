@@ -3,6 +3,7 @@ package com.akatia.printmgr;
 import com.akatia.printmgr.data.PrinterInfo;
 import com.akatia.printmgr.service.PrinterService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,7 +13,7 @@ import static java.lang.System.exit;
 
 @SpringBootApplication
 @Slf4j
-public class PrintMgrApplication {
+public class PrintMgrApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         try {
@@ -37,4 +38,9 @@ public class PrintMgrApplication {
             exit(0);
         }
     }
+
+    public void run(String... args) throws Exception {
+        //
+    }
 }
+
