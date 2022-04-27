@@ -1,7 +1,7 @@
-package com.akatia.printmgr.service;
+package io.softwarestrategies.printmgr.service;
 
-import com.akatia.printmgr.data.PrintJobRequest;
-import com.akatia.printmgr.data.PrintJobsRequest;
+import io.softwarestrategies.printmgr.data.PrintJobRequest;
+import io.softwarestrategies.printmgr.data.PrintJobsRequest;
 import com.amazonaws.util.StringUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package com.akatia.printmgr.config;
+package io.softwarestrategies.printmgr.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;

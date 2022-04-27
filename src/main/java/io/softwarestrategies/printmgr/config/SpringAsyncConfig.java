@@ -1,4 +1,4 @@
-package com.akatia.printmgr.config;
+package io.softwarestrategies.printmgr.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

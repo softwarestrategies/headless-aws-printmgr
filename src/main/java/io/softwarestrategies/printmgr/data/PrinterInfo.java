@@ -1,4 +1,4 @@
-package com.akatia.printmgr.data;
+package io.softwarestrategies.printmgr.data;
 
 import lombok.Data;
 

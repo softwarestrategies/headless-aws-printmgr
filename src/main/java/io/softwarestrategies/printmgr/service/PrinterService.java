@@ -1,6 +1,6 @@
-package com.akatia.printmgr.service;
+package io.softwarestrategies.printmgr.service;
 
-import com.akatia.printmgr.data.PrinterInfo;
+import io.softwarestrategies.printmgr.data.PrinterInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

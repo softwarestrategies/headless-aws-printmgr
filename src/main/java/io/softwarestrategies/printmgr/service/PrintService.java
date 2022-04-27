@@ -1,6 +1,6 @@
-package com.akatia.printmgr.service;
+package io.softwarestrategies.printmgr.service;
 
-import com.akatia.printmgr.data.PrintJobRequest;
+import io.softwarestrategies.printmgr.data.PrintJobRequest;
 import com.amazonaws.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;

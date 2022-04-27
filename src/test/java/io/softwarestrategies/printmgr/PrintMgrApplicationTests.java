@@ -1,4 +1,4 @@
-package com.akatia.printmgr;
+package io.softwarestrategies.printmgr;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
