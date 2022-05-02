@@ -1,10 +1,10 @@
-# PrintMgr
+# Headless AWS Print Manager
 
 ## About
 
 A friend of mine needed something like this for one of his projects and so I wrote it in my free-time.  It is meant to solve a specific use case:
 
-- Allowing web applications (probably AWS-hosted systems) to print headlessly/without-human-intervention to local printers
+- Allowing a web-hosted application to print headlessly (aka without-human-intervention) to local printers
 
 It is composed of two components:
 
